@@ -1,10 +1,14 @@
 // namespace SchoolSystem.DAL.Repositories;
+
+using DAL.Mappers;
+
 namespace DAL.Repositories;
 
 using DAL.Entities;
-using DAL.Mappers;
 using Microsoft.EntityFrameworkCore;
-
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 public class Repository<TEntity>(
     DbContext dbContext,

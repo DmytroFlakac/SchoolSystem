@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+        <GenerateRuntimeConfigDevFile>true</GenerateRuntimeConfigDevFile>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+	
+    <ItemGroup>
+      <ProjectReference Include="..\SchoolSystem.DAL\SchoolSystem.DAL.csproj" />
+      <ProjectReference Include="..\SchoolSystem.Common.Tests\SchoolSystem.Common.Tests.csproj" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <ProjectReference Include="..\SchoolSystem.DAL\SchoolSystem.DAL.csproj" />
+    </ItemGroup>
+
+</Project>

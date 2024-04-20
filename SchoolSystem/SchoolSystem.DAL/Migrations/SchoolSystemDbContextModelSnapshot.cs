@@ -29,6 +29,10 @@ namespace DAL.Migrations
                     b.Property<DateTime>("End")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Room")
                         .HasColumnType("INTEGER");
 
@@ -97,6 +101,27 @@ namespace DAL.Migrations
                     b.ToTable("Students");
                 });
 
+            modelBuilder.Entity("DAL.Entities.StudentSubjectEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("SubjectId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.HasIndex("SubjectId");
+
+                    b.ToTable("StudentSubjectEntity");
+                });
+
             modelBuilder.Entity("DAL.Entities.SubjectEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -146,15 +171,35 @@ namespace DAL.Migrations
                     b.HasOne("DAL.Entities.ActivityEntity", "Activity")
                         .WithMany("Evaluations")
                         .HasForeignKey("ActivityId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DAL.Entities.StudentEntity", "Student")
                         .WithMany()
-                        .HasForeignKey("StudentId");
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Activity");
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("DAL.Entities.StudentSubjectEntity", b =>
+                {
+                    b.HasOne("DAL.Entities.StudentEntity", "Student")
+                        .WithMany("StudentSubjects")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DAL.Entities.SubjectEntity", "Subject")
+                        .WithMany("StudentSubjects")
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
                 });
 
             modelBuilder.Entity("StudentEntitySubjectEntity", b =>
@@ -177,9 +222,16 @@ namespace DAL.Migrations
                     b.Navigation("Evaluations");
                 });
 
+            modelBuilder.Entity("DAL.Entities.StudentEntity", b =>
+                {
+                    b.Navigation("StudentSubjects");
+                });
+
             modelBuilder.Entity("DAL.Entities.SubjectEntity", b =>
                 {
                     b.Navigation("Activities");
+
+                    b.Navigation("StudentSubjects");
                 });
 #pragma warning restore 612, 618
         }
