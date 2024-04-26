@@ -1,9 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:i="clr-namespace:SchoolSystem.App.Views.Student"
+    x:Class="SchoolSystem.App.Shell.AppShell"
+    x:Name="AppShellRoot"
+    FlyoutBehavior="Disabled">
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SchoolSystem.App.Shell.AppShell">
-    <ContentPage.Content>
-        
-    </ContentPage.Content>
-</ContentPage>
+    <Shell.MenuBarItems>
+        <MenuBarItem  Text="StudentDetailView">
+            <MenuFlyoutItem Text="StudentDetailView2"
+                            Command="{Binding Source={x:Reference AppShellRoot}, Path=GoToStudentListViewCommand}" />
+        </MenuBarItem>
+    </Shell.MenuBarItems>
+
+    <ShellContent ContentTemplate="{DataTemplate i:StudentListView}" Route="Lists" />
+</Shell>
