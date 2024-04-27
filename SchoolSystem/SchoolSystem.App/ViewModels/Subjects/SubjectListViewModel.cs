@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Messaging;
 using SchoolSystem.App.Messages;
 using SchoolSystem.App.Services.Interfaces;
+using SchoolSystem.BL.Facades;
 using SchoolSystem.BL.Facades.Interfaces;
 using SchoolSystem.BL.Models;
 
@@ -13,7 +14,7 @@ public partial class SubjectListViewModel(
     IMessengerService messengerService)
     : ViewModelBase(messengerService), IRecipient<EditMessage>, IRecipient<DeleteMessage<SubjectListModel>>
 {
-    public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
+    public IEnumerable<SubjectListModel> Subjects { get; set; } = subjectFacade.GetAsync().Result;
 
     protected override async Task LoadDataAsync()
     {

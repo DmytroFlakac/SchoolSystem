@@ -3,17 +3,17 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:r="clr-namespace:SchoolSystem.App.Views.Student"
        xmlns:subjects="clr-namespace:SchoolSystem.App.Views.Subject"
+       xmlns:text="clr-namespace:SchoolSystem.App.Resources.Texts"
        x:Class="SchoolSystem.App.Shells.AppShell"
        x:Name="AppShellRoot"
        FlyoutBehavior="Disabled">
+
     <Shell.MenuBarItems>
-        <MenuBarItem Text="pomoika">
-            <MenuFlyoutItem Text="studenty"
-                Command="{Binding Source={x:Reference AppShellRoot}, Path=GoToStudentCommand}" />
-        </MenuBarItem>
-        <MenuBarItem Text="subjects">
-            <MenuFlyoutItem Text="subjecty"
-                 Command="{Binding Source={x:Reference AppShellRoot}, Path=GoToSubjectCommand}" />
+        <MenuBarItem Text="{x:Static text:AppShellTexts.File_MenuItem_Title}">
+            <MenuFlyoutItem  Text="{x:Static text:AppShellTexts.StudentMenuItem_Text}"
+                            Command="{Binding Source={x:Reference AppShellRoot}, Path=GoToStudentCommand}" />
+            <MenuFlyoutItem Text="{x:Static text:AppShellTexts.SubjectMenuItem_Text}"
+                    Command="{Binding Source={x:Reference AppShellRoot}, Path=GoToSubjectCommand}" />
         </MenuBarItem>
     </Shell.MenuBarItems>
 

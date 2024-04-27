@@ -72,8 +72,6 @@
 	<ItemGroup>
 		<Folder Include="Converters\" />
 		<Folder Include="Services\" />
-		<Folder Include="ViewModels\" />
-		<Folder Include="Views\" />
 		<Folder Include="Messages\" />
 	</ItemGroup>
 
@@ -87,22 +85,18 @@
 	  <MauiXaml Update="Shells\AppShell.xaml">
 	    <SubType>Designer</SubType>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Subject\SubjectListVIew.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Subject\SubjectEditView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Subject\SubjectDetailView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Resources\Texts\AppShellTexts.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>AppShellTexts.resx</DependentUpon>
-	  </Compile>
-	  <Compile Update="Resources\Texts\SubjectDetailView.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>SubjectDetailView.resx</DependentUpon>
-	  </Compile>
 	  <Compile Update="Views\Student\StudentEditView.xaml.cs">
 	    <DependentUpon>StudentEditView.xaml</DependentUpon>
 	    <SubType>Code</SubType>
@@ -115,17 +109,15 @@
 	    <DependentUpon>AppShell.xaml</DependentUpon>
 	    <SubType>Code</SubType>
 	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Update="Resources\Texts\AppShellTexts.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>AppShellTexts.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
-	  <EmbeddedResource Update="Resources\Texts\SubjectDetailView.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>SubjectDetailView.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
+	  <Compile Update="Views\Subject\SubjectListVIew.xaml.cs">
+	    <DependentUpon>SubjectListVIew.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Subject\SubjectEditView.xaml.cs">
+	    <DependentUpon>SubjectEditView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Subject\SubjectDetailView.xaml.cs">
+	    <DependentUpon>SubjectDetailView.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

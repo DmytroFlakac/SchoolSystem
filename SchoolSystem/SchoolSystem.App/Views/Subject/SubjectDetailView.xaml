@@ -5,8 +5,9 @@
              x:Class="SchoolSystem.App.Views.Subject.SubjectDetailView"
              xmlns:vm="clr-namespace:SchoolSystem.App.ViewModels"
              xmlns:subjects="clr-namespace:SchoolSystem.App.ViewModels.Subjects"
+             xmlns:texts="clr-namespace:SchoolSystem.App.Resources.Texts"
              xmlns:views2="clr-namespace:App.Views"
-             Title="Titleeee"
+             Title="{x:Static texts:SubjectDetailView.Subject_MenuItem_Title}"
              x:Name="SubjectDetailViewRoot"
              x:DataType="subjects:SubjectDetailViewModel">
     <VerticalStackLayout Spacing="20">
