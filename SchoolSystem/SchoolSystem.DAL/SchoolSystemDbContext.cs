@@ -1,15 +1,9 @@
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using SchoolSystem.Common.Tests.Seeds;
-
 namespace SchoolSystem.DAL;
-public class SchoolSystemDbContext : DbContext
+public class SchoolSystemDbContext(DbContextOptions contextOptions, bool seedDemoData = false) : DbContext(contextOptions)
 {
-    private readonly bool _seedDemoData;
-    public SchoolSystemDbContext(DbContextOptions options, bool seedDemoData = false) : base(options)
-    {
-        _seedDemoData = seedDemoData;
-    }
 
     public DbSet<StudentEntity> Students => Set<StudentEntity>();
     public DbSet<SubjectEntity> Subjects => Set<SubjectEntity>();
@@ -53,26 +47,8 @@ public class SchoolSystemDbContext : DbContext
             .HasMany(s => s.Activities)
             .WithOne(e => e.Subject)
             .OnDelete(DeleteBehavior.Cascade);
-
-        /*modelBuilder.Entity<CourseEntityStudentEntity>()
-                .HasOne(cs => cs.Course)
-                .WithMany(c => c.Students)
-                .HasForeignKey(cs => cs.CourseId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<CourseEntityStudentEntity>()
-                .HasOne(cs => cs.Student)
-                .WithMany()
-                .HasForeignKey(cs => cs.StudentId)
-                .OnDelete(DeleteBehavior.Restrict); */
-
-        // modelBuilder.Entity<ActivityEntity>()
-        //     .HasMany(s => s.Evaluations)
-        //     .WithOne(e => e.Activity)
-        //     .OnDelete(DeleteBehavior.Cascade);
-        // modelBuilder.Entity<EvaluationEntity>()
-        //     .HasOne(s => s.Student);
-        if (_seedDemoData)
+        
+        if (seedDemoData)
         {
             ActivitySeeds.Seed(modelBuilder);	
             StudentSeeds.Seed(modelBuilder);

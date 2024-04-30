@@ -11,7 +11,7 @@ public class EvaluationModelMapper : ModelMapperBase<EvaluationEntity, Evaluatio
         {
             Id = entity.Id, Score = entity.Score, Description = entity.Description,
             ActivityId = entity.ActivityId, StudentId = entity.StudentId,
-            Activity = entity.Activity is null ? ActivityListModel.Empty : new ActivityModelMapper().MapToListModel(entity.Activity)
+            Activity = new ActivityListModel() { Id = entity!.Activity.Id, Name = entity.Activity.Name, Start = entity.Activity.Start, End = entity.Activity.End, Description = entity.Activity.Description, Tag = entity.Activity.Tag, Room = entity.Activity.Room, SubjectId = entity.Activity.SubjectId },
         };
     
     public override EvaluationDetailModel MapToDetailModel(EvaluationEntity? entity) =>
@@ -20,11 +20,11 @@ public class EvaluationModelMapper : ModelMapperBase<EvaluationEntity, Evaluatio
             : new EvaluationDetailModel()
             {
                 Id = entity.Id, Score = entity.Score, Description = entity.Description,
-                ActivityId = entity.ActivityId, StudentId = entity.StudentId
-                , Activity = entity.Activity is null ? ActivityListModel.Empty : new ActivityModelMapper().MapToListModel(entity.Activity),
-                Student = entity.Student is null ? StudentListModel.Empty : new StudentModelMapper(new SubjectModelMapper()).MapToListModel(entity.Student)
+                ActivityId = entity.ActivityId, StudentId = entity.StudentId,
+                // Activity = new ActivityListModel() { Id = entity!.Activity.Id, Name = entity.Activity.Name, Start = entity.Activity.Start, End = entity.Activity.End, Description = entity.Activity.Description, Tag = entity.Activity.Tag, Room = entity.Activity.Room, SubjectId = entity.Activity.SubjectId },
+                // Student = new StudentListModel() { Id = entity!.Student.Id, Name = entity.Student.Name, Surname = entity.Student.Surname}
             };
 
     public override EvaluationEntity MapToEntity(EvaluationDetailModel model) =>
-        new() { Id = model.Id,  Activity = null!, ActivityId = model.ActivityId, StudentId = model.StudentId, Student = null!, Score = model.Score, Description = model.Description};
+        new() { Id = model.Id, ActivityId = model.ActivityId, StudentId = model.StudentId, Student = null!, Score = model.Score, Description = model.Description, Activity = new ActivityEntity() { Id = model.Activity.Id, Name = model.Activity.Name, Start = model.Activity.Start, End = model.Activity.End, Description = model.Activity.Description, Tag = model.Activity.Tag, Room = model.Activity.Room, SubjectId = model.Activity.SubjectId } }; 
 }

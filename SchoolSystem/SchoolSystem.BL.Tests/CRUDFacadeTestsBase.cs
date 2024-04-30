@@ -23,7 +23,7 @@ public class CRUDFacadeTestsBase : IAsyncLifetime
         ActivityMapper = new ActivityModelMapper();
         EvaluationMapper = new EvaluationModelMapper();
         SubjectMapper = new SubjectModelMapper();
-        StudentMapper = new StudentModelMapper(SubjectMapper);
+        StudentMapper = new StudentModelMapper();
         
         UnitOfWorkFactory = new UnitOfWorkFactory(DbContextFactory);
     }

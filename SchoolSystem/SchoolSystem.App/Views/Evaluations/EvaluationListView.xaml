@@ -41,7 +41,7 @@
                                    TextColor="Blue"
                                    VerticalOptions="Center" />
                             <Label Grid.Column="2"
-                                      Text="{Binding ActivityId}"
+                                      Text="{Binding Activity.Name}"
                                       FontSize="16"
                                       FontFamily="MontserratMedium"
                                       TextColor="Blue"

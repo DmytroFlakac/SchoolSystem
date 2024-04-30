@@ -17,5 +17,7 @@ public class ActivityEntityMapper : IEntityMapper<ActivityEntity>
         existingEntity.Name = newEntity.Name;
         existingEntity.SubjectId = newEntity.SubjectId;
         existingEntity.Subject = newEntity.Subject;
+        existingEntity.Evaluations = newEntity.Evaluations;
+        
     }
 }

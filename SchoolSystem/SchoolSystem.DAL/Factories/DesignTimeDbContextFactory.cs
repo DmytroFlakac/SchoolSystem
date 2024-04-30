@@ -9,7 +9,7 @@ namespace DAL.Factories;
 /// </summary>
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<SchoolSystemDbContext>
 {
-    private readonly DbContextSqLiteFactory _dbContextSqLiteFactory = new($"Data Source=SchoolSystem;Cache=Shared");
+    private readonly DbContextSqLiteFactory _dbContextSqLiteFactory = new("schoolsystem.db");
 
     public SchoolSystemDbContext CreateDbContext(string[] args) => _dbContextSqLiteFactory.CreateDbContext();
 }
