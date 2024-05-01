@@ -184,6 +184,30 @@ public partial class ActivityListViewModel(
     {
         await LoadDataAsync();
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 

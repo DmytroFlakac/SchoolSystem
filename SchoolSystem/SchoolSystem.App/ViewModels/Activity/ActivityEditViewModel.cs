@@ -20,6 +20,8 @@ public partial class ActivityEditViewModel : ViewModelBase, INotifyPropertyChang
 
     public Guid SubjectId { get; set; }
     public ActivityDetailModel Activity { get; init; } = ActivityDetailModel.Empty;
+    
+    public List<Room> Rooms => Enum.GetValues(typeof(Room)).Cast<Room>().ToList();
     public DateTime EndDate { get; set; }
     public TimeSpan EndTime { get; set; }
     
@@ -52,17 +54,17 @@ public partial class ActivityEditViewModel : ViewModelBase, INotifyPropertyChang
     {
         await base.LoadDataAsync();
         
-        EndDate = Activity.End.Date;
+        // EndDate = Activity.End.Date;
         // EndTime = Activity?.End.TimeOfDay ?? DateTime.Now.TimeOfDay;
-        StartDate = Activity.Start.Date;
+        // StartDate = Activity.Start.Date;
         // StartTime = Activity?.Start.TimeOfDay ?? DateTime.Now.TimeOfDay;
     }
 
     [RelayCommand]
     private async Task SaveAsync()
     {
-        // Activity.Start = StartDate.Date.Add(StartTime);
-        // Activity.End = EndDate.Date.Add(EndTime);
+        Activity.Start = StartDate.Date.Add(StartTime);
+        Activity.End = EndDate.Date.Add(EndTime);
         Subject = await _subjectFacade.GetSubjectByAbbrAsync(Activity!.SubjectAbr);
         SubjectId = Subject.Id;
         Activity.SubjectId = SubjectId;

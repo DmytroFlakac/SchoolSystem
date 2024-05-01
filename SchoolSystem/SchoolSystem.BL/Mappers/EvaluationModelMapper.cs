@@ -26,5 +26,5 @@ public class EvaluationModelMapper : ModelMapperBase<EvaluationEntity, Evaluatio
             };
 
     public override EvaluationEntity MapToEntity(EvaluationDetailModel model) =>
-        new() { Id = model.Id,  Activity = null!, ActivityId = model.ActivityId, StudentId = model.StudentId, Student = null!, Score = model.Score, Description = model.Description};
+        new() { Id = model.Id, ActivityId = model.ActivityId, StudentId = model.StudentId, Score = model.Score, Description = model.Description };
 }

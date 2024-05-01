@@ -8,6 +8,8 @@
                         xmlns:views1="clr-namespace:SchoolSystem.App.Views"
                         xmlns:activities="clr-namespace:SchoolSystem.App.ViewModels.Activity"
                         xmlns:views2="clr-namespace:App.Views"
+                        xmlns:models="clr-namespace:SchoolSystem.BL.Models"
+                        xmlns:models1="clr-namespace:SchoolSystem.BL.Models;assembly=SchoolSystem.BL"
                         Title="Activity Detail"
                         x:Name="ActivityDetailViewRoot"
                         x:DataType="activities:ActivityDetailViewModel">
@@ -50,6 +52,10 @@
                     <Label Text="{Binding Activity.End}" FontSize="24"/>
                 </HorizontalStackLayout>
 
+                <HorizontalStackLayout Spacing="5">
+                    <Label Text="Room: " FontSize="24" FontAttributes="Bold"/>
+                    <Label Text="{Binding Activity.End}" FontSize="24"/>
+                </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="5">
                     <Label Text="Room: " FontSize="24" FontAttributes="Bold"/>
@@ -65,6 +71,32 @@
                     <Label Text="Description: " FontSize="24" FontAttributes="Bold"/>
                     <Label Text="{Binding Activity.Description}" FontSize="24"/>
                 </HorizontalStackLayout>
+                
+                <HorizontalStackLayout Spacing="5">
+                    <Label Text="Abbreveation: " FontSize="24" FontAttributes="Bold"/>
+                    <Label Text="{Binding Activity.SubjectAbr}" FontSize="24"/>
+                </HorizontalStackLayout>
+                
+                <ListView ItemsSource="{Binding Activity.Evaluations}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models1:EvaluationListModel">  
+                            <Grid Padding="10" RowDefinitions="Auto" ColumnDefinitions="*, *, *">
+                                <!-- <Label Grid.Column="0" -->
+                                <!--        Text="{Binding Evaluator}" -->
+                                <!--        FontAttributes="Bold" -->
+                                <!--        VerticalOptions="Center" /> -->
+                                <Label Grid.Column="0"
+                                       Text="{Binding Score}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center" />
+                                <!-- <Label Grid.Column="2" -->
+                                <!--        Text="{Binding Comments}" -->
+                                <!--        VerticalOptions="Center" -->
+                                <!--        HorizontalOptions="End" /> -->
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
                 
             </VerticalStackLayout>
         </Grid>

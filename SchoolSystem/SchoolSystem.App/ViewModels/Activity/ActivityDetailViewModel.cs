@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using SchoolSystem.App.Messages;
 using SchoolSystem.App.Services.Interfaces;
@@ -10,6 +11,7 @@ namespace SchoolSystem.App.ViewModels.Activity;
 [QueryProperty(nameof(Id), nameof(Id))]
 public partial class ActivityDetailViewModel(
     IActivityFacade activityFacade,
+    IEvaluationFacade evaluationFacade,
     INavigationService navigationService,
     IMessengerService messengerService,
     IAlertService alertService)
@@ -23,7 +25,9 @@ public partial class ActivityDetailViewModel(
         await base.LoadDataAsync();
 
         Activity = await activityFacade.GetAsync(Id);
+        Activity.Evaluations = new ObservableCollection<EvaluationListModel>(await evaluationFacade.GetAsyncListByActivity(Id));
     }
+
 
     [RelayCommand]
     private async Task DeleteAsync()

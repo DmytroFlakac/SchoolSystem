@@ -73,7 +73,7 @@ public abstract class
     {
         TDetailModel result;
 
-        GuardCollectionsAreNotSet(model);
+        // GuardCollectionsAreNotSet(model);
 
         TEntity entity = ModelMapper.MapToEntity(model);
 
@@ -97,6 +97,13 @@ public abstract class
         return result;
     }
     
+    /// <summary>
+    /// This Guard ensures that there is a clear understanding of current infrastructure limitations.
+    /// This version of BL/DAL infrastructure does not support insertion or update of adjacent entities.
+    /// WARN: Does not guard navigation properties.
+    /// </summary>
+    /// <param name="model">Model to be inserted or updated</param>
+    /// <exception cref="InvalidOperationException"></exception>
     private static void GuardCollectionsAreNotSet(TDetailModel model)
     {
         IEnumerable<PropertyInfo> collectionProperties = model

@@ -54,7 +54,13 @@ public sealed class SubjectFacadeTests : CRUDFacadeTestsBase
         DeepAssert.Contains(SubjectMapper.MapToListModel(SubjectSeeds.IUS), subjects);
     }
     
+    [Fact]
+    public async Task GetSubjectByName()
+    {
+        var subjects = await _subjectFacadeSUT.GetSubjectsByName(SubjectSeeds.IUS.Name);
 
+        DeepAssert.Contains(SubjectMapper.MapToListModel(SubjectSeeds.IUS), subjects);
+    }
     
     [Fact]
     public async Task GetSubjectsByNameAsync()

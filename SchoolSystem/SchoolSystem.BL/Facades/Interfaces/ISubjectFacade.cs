@@ -7,4 +7,6 @@ public interface ISubjectFacade : IFacade<SubjectEntity, SubjectListModel, Subje
 {
     Task<SubjectListModel> GetSubjectByAbbrAsync(string abbreviation);
     Task AddActivityToSubject(Guid subjectId, Guid activityId);
+    
+    Task<IEnumerable<SubjectListModel>> GetSubjectsByName(string name);
 }

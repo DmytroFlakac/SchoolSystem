@@ -26,5 +26,5 @@ public class StudentSubjectModelMapper : ModelMapperBase<StudentSubjectEntity, S
             };
 
     public override StudentSubjectEntity MapToEntity(StudentSubjectModel model) =>
-        new() { Id = model.Id, StudentId = model.StudentId, SubjectId = model.SubjectId, Student = null, Subject = null };
+        new() { Id = model.Id, StudentId = model.StudentId, SubjectId = model.SubjectId};
 }

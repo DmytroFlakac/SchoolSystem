@@ -13,7 +13,7 @@
 					   xmlns:rooms="clr-namespace:SchoolSystem.DAL"
 					   xmlns:enums="clr-namespace:DAL.Enums;assembly=SchoolSystem.DAL"
 					   x:Name="ActivityEditViewRoot"
-                       x:DataType="vm:ActivityEditViewModel"
+                       x:DataType="activities:ActivityEditViewModel"
                        xmlns:sys="clr-namespace:System;assembly=mscorlib"
                        >
 
@@ -61,6 +61,10 @@
 
                 <Label Text="Description" />
                 <Entry x:Name="DescriptionEntry" HorizontalOptions="Fill" Text="{Binding Activity.Description}" />
+                
+                <Label Text="Abbreviation" />
+                
+                <Entry x:Name="AbbreviationEntry" HorizontalOptions="Fill" Text="{Binding Activity.SubjectAbr}" />
 
 
             </VerticalStackLayout>
@@ -74,7 +78,7 @@
                     <Label Text="Start"></Label>
                     <DatePicker Date="{Binding Activity.Start}" VerticalOptions="Center" />
                     <TimePicker
-                        Time="{Binding TimeOfDayStart}"
+                        Time="{Binding StartTime}"
                         VerticalOptions="Center" />
                 </StackLayout>
 
@@ -82,7 +86,7 @@
                     <Label Text="End"></Label>
                     <DatePicker Date="{Binding Activity.End}" VerticalOptions="Center" />
                     <TimePicker
-                        Time="{Binding TimeOfDayEnd}"
+                        Time="{Binding EndDate}"
                         VerticalOptions="Center" />
                 </StackLayout>
 

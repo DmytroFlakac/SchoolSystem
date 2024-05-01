@@ -16,8 +16,7 @@ namespace SchoolSystem.BL.Models
             Id = Guid.NewGuid(),
             Name = string.Empty,
             Abbreviation = string.Empty,
-            StudentSubjects = new ObservableCollection<StudentSubjectModel>(),
-            Activities = new ObservableCollection<ActivityListModel>()
+            
         };
     }
 }
