@@ -12,7 +12,8 @@ public record ActivityListModel() : baseModel
     public  required string? Description { get; set; } 
     public  required int Tag { get; set; }
     public  required Room Room { get; set; }
-    public  required Guid? SubjectId { get; set; }
+    public  Guid? SubjectId { get; set; }
+    public string? SubjectAbr { get; set; }
     
     public static ActivityListModel Empty => new()
     {
@@ -23,7 +24,8 @@ public record ActivityListModel() : baseModel
         Description = string.Empty,
         Tag = 0,
         Room = Room.D105,
-        SubjectId = Guid.Empty
+        SubjectId = default,
+        SubjectAbr = string.Empty
     };
        
 }

@@ -19,10 +19,8 @@ public record ActivityDetailModel() : baseModel
 
     public SubjectListModel? Subject { get; set; }
     
-    public Guid StudentId { get; set; }
+    public string? SubjectAbr { get; set; }
     
-    public StudentListModel? Student { get; set; }
-
     public static ActivityDetailModel Empty => new()
     {
         Id = Guid.NewGuid(),
@@ -35,8 +33,7 @@ public record ActivityDetailModel() : baseModel
         SubjectId = default,
         Evaluations = new ObservableCollection<EvaluationListModel>(),
         Subject = SubjectListModel.Empty,
-        StudentId = default,
-        Student = StudentListModel.Empty
+        SubjectAbr = string.Empty
     };
 
     

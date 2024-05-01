@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using System.ComponentModel;
+using DAL.Enums;
 using SchoolSystem.App.Messages;
 using SchoolSystem.App.Services;
 using SchoolSystem.App.Services.Interfaces;
@@ -21,13 +22,15 @@ public partial class ActivityEditViewModel : ViewModelBase, INotifyPropertyChang
     public ActivityDetailModel Activity { get; init; } = ActivityDetailModel.Empty;
     public DateTime EndDate { get; set; }
     public TimeSpan EndTime { get; set; }
+    
+    public int Tag { get; set; }
+    
+    public Room Room { get; set; }
 
     public DateTime StartDate { get; set; }
     public TimeSpan StartTime { get; set; }
-
-    public SubjectDetailedModel? Subject { get; set; }
-    public string[] Students { get; set; }
-    public string? SelectedStudent { get; set; }
+    
+    public SubjectListModel? Subject { get; set; }
 
     public ActivityEditViewModel(
         IActivityFacade activityFacade,
@@ -40,55 +43,46 @@ public partial class ActivityEditViewModel : ViewModelBase, INotifyPropertyChang
         _activityFacade = activityFacade;
         _navigationService = navigationService;
         _alertService = alertService;
-        var viewModel = (AppShellViewModel)Shell.Current.BindingContext;
-        SubjectId = viewModel.SubjectId;
+        // var viewModel = (AppShellViewModel)Shell.Current.BindingContext;
+        // SubjectId = viewModel.SubjectId;
         _subjectFacade = subjectFacade;
     }
 
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
-
-        Subject = await _subjectFacade.GetAsync(SubjectId);
-
-        Students = Subject!.StudentSubjects.Select(up => up.StudentName).ToArray();
-        SelectedStudent = Subject.StudentSubjects.Where(up => up.StudentId == Activity.SubjectId).Select(up => up.StudentName).FirstOrDefault();
-
-        EndDate = Activity?.End.Date ?? DateTime.Now;
-        EndTime = Activity?.End.TimeOfDay ?? DateTime.Now.TimeOfDay;
-        StartDate = Activity?.Start.Date ?? DateTime.Now;
-        StartTime = Activity?.Start.TimeOfDay ?? DateTime.Now.TimeOfDay;
+        
+        EndDate = Activity.End.Date;
+        // EndTime = Activity?.End.TimeOfDay ?? DateTime.Now.TimeOfDay;
+        StartDate = Activity.Start.Date;
+        // StartTime = Activity?.Start.TimeOfDay ?? DateTime.Now.TimeOfDay;
     }
 
     [RelayCommand]
     private async Task SaveAsync()
     {
-        Activity.Start = StartDate.Date.Add(StartTime);
-        Activity.End = EndDate.Date.Add(EndTime);
+        // Activity.Start = StartDate.Date.Add(StartTime);
+        // Activity.End = EndDate.Date.Add(EndTime);
+        Subject = await _subjectFacade.GetSubjectByAbbrAsync(Activity!.SubjectAbr);
+        SubjectId = Subject.Id;
+        Activity.SubjectId = SubjectId;
+        Activity.Subject = Subject;
         if (Activity.Start >= Activity.End)
         {
             await _alertService.DisplayAsync("Invalid Time", "Activity cannot be add because start time is same or greater then end time.");
             return;
         }
-
+        
         var subject_Activities = await _activityFacade.GetAsyncListBySubject(SubjectId);
-
+        
         if (CheckActivitiesTime(subject_Activities, Activity))
         {
             await _alertService.DisplayAsync("Activities Overlap", "Activity cannot be add because different activity is planned for this time.");
             return;
         }
-
-        if (SelectedStudent is null)
-        {
-            await _alertService.DisplayAsync("Student is not selected", "You must select a project when adding activity.");
-            return;
-        }
-
-        // Activity.SubjectId = Student.UserProjects.Where(up => up.ProjectName == SelectedProject).Select(p => p.ProjectId).FirstOrDefault();
-        Activity.SubjectId = SubjectId;
-
+        
         await _activityFacade.SaveAsync(Activity);
+        // await _subjectFacade.AddActivityToSubject(SubjectId, Activity.Id);
         MessengerService.Send(new EditMessage { Id = Activity.Id });
         _navigationService.SendBackButtonPressed();
     }

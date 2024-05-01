@@ -1,4 +1,6 @@
-﻿namespace SchoolSystem.BL.Mappers;
+﻿using SchoolSystem.BL.Models;
+
+namespace SchoolSystem.BL.Mappers;
 
 // Based on ICS Cookbook ( GPL-3.0 license ): 
 // https://github.com/nesfit/ICS/tree/master?tab=GPL-3.0-1-ov-file#readme

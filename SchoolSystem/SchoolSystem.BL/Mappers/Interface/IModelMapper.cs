@@ -1,4 +1,6 @@
-﻿namespace SchoolSystem.BL.Mappers;
+﻿using SchoolSystem.BL.Models;
+
+namespace SchoolSystem.BL.Mappers;
 
 public interface IModelMapper<TEntity, out TListModel, TDetailModel>
 {

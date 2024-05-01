@@ -113,7 +113,7 @@ public sealed class SubjectFacadeTests : CRUDFacadeTestsBase
         
         var subject = await _subjectFacadeSUT.GetAsync(model.Id);
         
-        Assert.Equal(model, subject);
+        DeepAssert.Equal(model, subject);
     }
     
     

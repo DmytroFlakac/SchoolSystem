@@ -60,6 +60,11 @@
 
 				<Label Text="Description" />
 				<Entry x:Name="DescriptionEntry" HorizontalOptions="Fill" Text="{Binding Activity.Description}" />
+				
+				<Label Text="Subject" />
+				<Entry x:Name="SubjectEntry" HorizontalOptions="Fill" Text="{Binding Activity.SubjectAbr}" />
+				
+				
 
 
 			</VerticalStackLayout>
@@ -94,8 +99,6 @@
                 </Picker>
 
 			</VerticalStackLayout>
-
-
 		</Grid>
 	</Grid>
 
