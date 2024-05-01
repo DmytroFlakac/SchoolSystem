@@ -3,6 +3,4 @@ using SchoolSystem.BL.Models;
 
 namespace SchoolSystem.BL.Facades.Interfaces;
 
-public interface IStudentFacade : IFacade<StudentEntity, StudentListModel, StudentDetailedModel>
-{
-}
+public interface IStudentFacade : IFacade<StudentEntity, StudentListModel, StudentDetailedModel>;

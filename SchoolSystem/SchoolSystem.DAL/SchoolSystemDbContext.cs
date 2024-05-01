@@ -40,6 +40,7 @@ public class SchoolSystemDbContext(DbContextOptions options, bool seedDemoData =
             .WithMany(c => c.Activities)
             .HasForeignKey(a => a.SubjectId)
             .OnDelete(DeleteBehavior.Cascade);
+        
 
         modelBuilder.Entity<EvaluationEntity>()
             .HasOne(e => e.Activity)

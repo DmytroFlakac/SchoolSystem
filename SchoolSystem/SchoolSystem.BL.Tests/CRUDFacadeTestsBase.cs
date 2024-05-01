@@ -30,11 +30,12 @@ public class CRUDFacadeTestsBase : IAsyncLifetime
     }
 
     protected IDbContextFactory<SchoolSystemDbContext> DbContextFactory { get; }
+    
+    protected StudentSubjectModelMapper StudentSubjectMapper { get; }
 
     protected StudentModelMapper StudentMapper { get; }
     protected SubjectModelMapper SubjectMapper { get; }
     
-    protected StudentSubjectModelMapper StudentSubjectMapper { get; }
     protected ActivityModelMapper ActivityMapper { get; }
 
     protected EvaluationModelMapper EvaluationMapper { get; }

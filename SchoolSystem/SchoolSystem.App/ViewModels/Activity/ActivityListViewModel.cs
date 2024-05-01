@@ -13,13 +13,27 @@ public partial class ActivityListViewModel(
     IMessengerService messengerService)
     : ViewModelBase(messengerService), IRecipient<EditMessage>, IRecipient<DeleteMessage<ActivityListModel>>
 {
-    public IEnumerable<ActivityListModel> Activities { get; set; } = null!;
+    public IEnumerable<ActivityListModel> Activities { get; set; } =    activityFacade.GetAsync().Result;
 
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
 
         Activities = await activityFacade.GetAsync();
+        // Activities = await activityFacade.GetAsyncListByStudent(StudentId);
+        // ManualFilter = false;
+        // ParseInterval(SelectedFilter);
+        //
+        // if (FilterEnd == null)
+        // {
+        //     FilterEnd = GetMaxTime(Activities, FilterEnd);
+        // }
+        // if (FilterStart == null)
+        // {
+        //     FilterStart = GetMinTime(Activities, FilterStart);
+        // }
+        //
+        // Activities = await activityFacade.GetAsyncFilter(StudentId, FilterStart, FilterEnd, null, null);
     }
 
     [RelayCommand]
