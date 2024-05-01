@@ -20,19 +20,19 @@
 
     <Grid RowDefinitions="70, *">
         <Grid Grid.Row="0"
-			  ColumnDefinitions="*, Auto"
-			  ColumnSpacing="15">
+              ColumnDefinitions="*, Auto"
+              ColumnSpacing="15">
 
             <Button
-                    Grid.Column="1"
-                    VerticalOptions="Start"
-					Text="Save"
-                    HeightRequest="30"
-                    Command="{Binding SaveCommand}">
+                Grid.Column="1"
+                VerticalOptions="Start"
+                Text="Save"
+                HeightRequest="30"
+                Command="{Binding SaveCommand}">
                 <Button.IsEnabled>
                     <MultiBinding Converter="{StaticResource NotEmptyConverter}">
                         <Binding Source="{x:Reference NameEntry}" Path="Text" />
-                       
+
                         <Binding Source="{x:Reference TagEntry}" Path="Text" />
                     </MultiBinding>
                 </Button.IsEnabled>
@@ -63,21 +63,27 @@
                 <Entry x:Name="DescriptionEntry" HorizontalOptions="Fill" Text="{Binding Activity.Description}" />
 
 
-			</VerticalStackLayout>
+            </VerticalStackLayout>
 
-			<VerticalStackLayout Grid.Row="0" Grid.RowSpan="2"
+            <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2"
                                  Grid.Column="2"
                                  HorizontalOptions="Start"
                                  Spacing="10">
 
-                <StackLayout Orientation="Vertical" Spacing="11" >
+                <StackLayout Orientation="Vertical" Spacing="11">
                     <Label Text="Start"></Label>
-                    <DatePicker Date="{Binding Activity.Start}" VerticalOptions="Center"/>
+                    <DatePicker Date="{Binding Activity.Start}" VerticalOptions="Center" />
+                    <TimePicker
+                        Time="{Binding TimeOfDayStart}"
+                        VerticalOptions="Center" />
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical" Spacing="11" HorizontalOptions="End">
                     <Label Text="End"></Label>
-                    <DatePicker Date="{Binding Activity.End}" VerticalOptions="Center"/>
+                    <DatePicker Date="{Binding Activity.End}" VerticalOptions="Center" />
+                    <TimePicker
+                        Time="{Binding TimeOfDayEnd}"
+                        VerticalOptions="Center" />
                 </StackLayout>
 
             </VerticalStackLayout>
@@ -86,15 +92,15 @@
                                  Grid.Column="3"
                                  HorizontalOptions="Start"
                                  Spacing="10">
-                
-                
+
+
                 <Picker Title="Select a Room"
                         x:Name="RoomEntry"
                         ItemsSource="{Binding Rooms}"
                         SelectedItem="{Binding Activity.Room, Mode=TwoWay}">
                 </Picker>
-                
-                
+
+
             </VerticalStackLayout>
 
 

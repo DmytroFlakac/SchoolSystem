@@ -8,7 +8,7 @@ using SchoolSystem.App.ViewModels;
 using SchoolSystem.BL.Facades.Interfaces;
 using SchoolSystem.BL.Models;
 
-namespace SchoolSystem.App.ViewModels;
+namespace SchoolSystem.App.ViewModels.Activity;
 
 [QueryProperty(nameof(Activity), nameof(Activity))]
 public partial class ActivityEditViewModel : ViewModelBase, INotifyPropertyChanged
