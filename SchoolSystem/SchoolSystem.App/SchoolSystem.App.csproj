@@ -1,11 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+   <!-- Project Configuration -->
   <PropertyGroup>
-
-	<TargetFrameworks>net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks>net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
-    <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+    <!-- Uncomment to also build the tizen app. -->
     <!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
-
     <OutputType>Exe</OutputType>
     <RootNamespace>SchoolSystem.App</RootNamespace>
     <UseMaui>true</UseMaui>
@@ -18,28 +17,20 @@
     <ApplicationVersion>1</ApplicationVersion>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <RuntimeIdentifiers>win-x64;ios-arm;ios-arm64;ios-x64;maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers>
-  </PropertyGroup>
-
+  <!-- Platform-Specific Supported OS Platform Versions -->
   <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0-ios'">
     <SupportedOSPlatformVersion>17.2</SupportedOSPlatformVersion>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0-maccatalyst'">
     <SupportedOSPlatformVersion>17.2</SupportedOSPlatformVersion>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0-windows10.0.19041.0'">
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
   </PropertyGroup>
-
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('tizen'))">
     <SupportedOSPlatformVersion>6.5</SupportedOSPlatformVersion>
   </PropertyGroup>
-
-	
 
 	<ItemGroup>
 		<!-- App Icon -->
